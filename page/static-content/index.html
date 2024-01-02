@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>tf2tfjs</title>
+</head>
+<body>
+    <script src="uploadScript.js"></script>
+    <table align="center">
+        <tr>
+            <td>
+                <center><img src="img/logo.svg"></center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form id="uploadForm" method="post" enctype="multipart/form-data">
+                    <input id="file" name="file" type="file" />
+                    <button type="button" onclick="uploadFile()">Upload and Convert</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center><div id="loader-download" height="100px" width="100px"></div></center>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

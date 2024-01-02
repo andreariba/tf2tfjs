@@ -1,0 +1,2 @@
+docker build -t tfjs-api:latest .
+docker build -t tfjs-frontend:latest -f .\page\Dockerfile .

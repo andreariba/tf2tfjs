@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    container_name: rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - db-data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    depends_on:
+     - mongodb
+    restart: unless-stopped
+    ports:
+      - 8080:8081
+    environment:
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_URL=mongodb://admin:password@mongodb:27017/
+
+  backend:
+    image: jupyter/datascience-notebook
+    depends_on:
+      - rabbitmq
+    ports:
+      - '5000:5000'
+      - '4999:8888'
+    volumes:
+      - notebook_data:/home/jovyan/work
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+
+  frontend:
+    image: nginx
+    ports:
+      - '5001:80'
+    volumes:
+      - ./page/:/usr/share/nginx/html
+
+volumes:
+  notebook_data:
+    driver: local
+  db-data:
+    driver: local
+
+

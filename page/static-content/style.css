@@ -1,0 +1,52 @@
+body {
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+}
+
+form {
+    font-family: Arial, sans-serif;
+}
+
+input[type=file]::file-selector-button, button, .button {
+    margin: 20px;
+    margin-right: 10px;
+    border: none;
+    background: #084cdf;
+    padding: 20px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover, button:hover, .button:hover {
+    background: #0d45a5;
+}
+
+.loader {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #084cdf; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    vertical-align: center;
+    align-content: center;
+}
+
+.failed {
+    margin: 20px;
+    margin-right: 10px;
+    border: none;
+    background: #df0808;
+    padding: 20px 20px;
+    border-radius: 10px;
+    color: #f3f3f3;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
