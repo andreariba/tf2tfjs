@@ -90,15 +90,3 @@ All service configuration lives in [`api/configuration.yaml`](api/configuration.
 - **Frontend:** HTML, CSS, JavaScript, Nginx
 - **Infrastructure:** Docker, Docker Compose, RabbitMQ, MongoDB
 
-## Testing
-
-The `test/` directory contains sample models:
-
-- `test_good_model.zip` — valid SavedModel for verifying successful conversion
-- `test_bad_model.zip` — invalid model for verifying error handling
-
-Upload them through the frontend or directly via the API:
-
-```bash
-curl -F "file=@test/test_good_model.zip" http://localhost:5000/upload
-```
